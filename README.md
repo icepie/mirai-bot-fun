@@ -1,0 +1,2 @@
+# mirai-bot-fun
+とてもかわいい
