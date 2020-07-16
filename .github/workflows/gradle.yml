@@ -5,9 +5,9 @@ name: Kotlin Gradle
 
 on:
   push:
-    branches: [ mirai ]
+    branches: [ master ]
   pull_request:
-    branches: [ mirai ]
+    branches: [ master ]
 
 jobs:
   build:
