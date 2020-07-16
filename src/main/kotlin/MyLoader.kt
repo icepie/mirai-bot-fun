@@ -19,7 +19,9 @@ import java.io.File
     suspend fun main() {
         val qqId = 12345678L//Bot的QQ号，需为Long类型，在结尾处添加大写L
         val password = "WyIlY0528"//Bot的密码
+        val qqGroupNb = 1020604475L //开启功能的QQ群号
         val miraiBot = Bot(qqId, password).alsoLogin()//新建Bot并登录
+        val myTestGroup=miraiBot.getGroup(qqGroupNb)
         miraiBot.subscribeMessages {
             /*"你好" reply "你好!"
             case("我爱你") {
@@ -31,10 +33,12 @@ import java.io.File
         }
         miraiBot.subscribeAlways<GroupMessageEvent> { event ->
             // 暂时实现方法是对某一个人的消息进行跟随, 后期会使用定时器实现
-            if (event.message.content.contains("雨今日健康良好且未有行程变动")) {
-                val report_image = "/home/icepie/图片/test.png"
-                reply("XXX今日健康良好且未有行程变动! 并亲了你一口:)")
-                File(report_image).sendAsImage()
+            if (event.group==myTestGroup) {
+                if (event.message.content.contains("雨今日健康良好且未有行程变动")) {
+                    val report_image = "/home/icepie/图片/test.png" //如有截图请替换路径
+                    reply("XXX今日健康良好且未有行程变动! 并亲了你一口:)")
+                    File(report_image).sendAsImage()
+                }
             }
         }
         /*
